@@ -1,0 +1,159 @@
+.design {
+  padding: 7rem 0;
+  background-color: #eff2f1;
+  position: relative;
+}
+
+.grid-1 {
+  width: 60%;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.images {
+  display: flex;
+}
+.small-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 20px;
+}
+.grid-2 {
+  border-radius: 20px;
+}
+.grid-3 {
+  position: absolute;
+  border-radius: 20px;
+  bottom: -3%;
+  right: 40%;
+}
+.design-title {
+  color: #2f2f2f;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.design-right p {
+  color: #6a6a6a;
+  line-height: 28px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.design-right {
+  padding-left: 43px;
+}
+
+.design-images {
+  display: flex;
+  width: 30%;
+}
+
+.design-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.design-list li {
+  width: 200px;
+  display: inline-block;
+  position: relative;
+  padding-left: 18px;
+}
+.design-list li::before {
+  position: absolute;
+  width: 8px;
+  left: 0;
+  height: 8px;
+  border-radius: 50%;
+  content: "";
+  border: 2px solid #3b5d50;
+  top: 10px;
+}
+
+.popular-products {
+  display: flex;
+  margin-top: 150px;
+  column-gap: 24px;
+}
+.popular-product img {
+  width: 30%;
+  margin-right: 15px;
+  background-color: #dce5e4;
+  border-radius: 20px;
+}
+
+.popular-product {
+  display: flex;
+}
+
+.popular-item h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.popular-item h4,
+.read-btn {
+  color: #2f2f2f;
+}
+.popular-item p {
+  color: #6a6a6a;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.green-dot {
+  position: absolute;
+  top: 20px;
+  left: 17px;
+  z-index: 1;
+}
+
+.read-btn {
+  transition: all, 0.3s;
+}
+.read-btn:hover {
+  color: rgba(47, 47, 47, 0.5);
+}
+
+@media (max-width: 1160px) {
+  .images {
+    height: 10%;
+  }
+  .design-info {
+    display: block;
+  }
+  .design-right {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+  .design-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .popular-products {
+    margin-top: 80px;
+  }
+  .popular-products img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1160px) {
+  .green-dot {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .popular-products {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .popular-product {
+    width: 80%;
+  }
+}

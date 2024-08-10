@@ -1,0 +1,9 @@
+.hero {
+  background-color: #3b5d50;
+  padding: 5rem 0;
+}
+
+.hero-title {
+  font-size: 54px;
+  font-weight: 700;
+}

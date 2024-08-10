@@ -1,0 +1,89 @@
+.login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: #00000090;
+  display: grid;
+  transition: 0.7s;
+  animation: fade 0.5s;
+}
+
+.form h1 {
+  color: #6a6a6a;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.login-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-regular {
+  color: #6a6a6a;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.fa-regular:hover {
+  color: #3b5d50;
+}
+
+.error-text {
+  color: red;
+  font-size: 16px;
+  font-weight: 500;
+}
+.form {
+  place-self: center;
+  padding: 30px;
+  width: 370px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.login-inputs input {
+  padding: 10px 10px;
+  color: #000;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  height: 45px;
+}
+.login-btn {
+  margin: 30px auto 20px auto;
+  background-color: #3b5d50;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+.login-btn:hover {
+  scale: 1.02;
+}
+.checkbox {
+  margin-top: 3px;
+}
+.login-privacy {
+  display: flex;
+  column-gap: 10px;
+  margin-bottom: 20px;
+}
+.login-privacy p {
+  color: #6a6a6a;
+}
+
+.new-account {
+  color: #6a6a6a;
+}
+.new-account span {
+  color: #3b5d50;
+  cursor: pointer;
+  font-weight: 600;
+}

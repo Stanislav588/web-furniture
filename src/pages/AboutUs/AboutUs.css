@@ -1,0 +1,64 @@
+.about-us {
+  background-color: #eff2f1;
+
+  padding: 7rem 0;
+}
+.about-title h2 {
+  font-size: 2.5rem;
+  color: #2f2f2f;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+.about-list li {
+  list-style: none;
+}
+.about-list {
+  display: flex;
+  column-gap: 25px;
+}
+
+@media screen and (max-width: 1115px) {
+  .about-us {
+    padding: 2rem 0 5rem 0;
+  }
+}
+
+.about-link {
+  margin-bottom: 1rem;
+}
+.about-name {
+  color: #2f2f2f;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: calc(1.3rem + 0.6vw);
+  font-family: 700;
+}
+.about-name:hover {
+  text-decoration: none;
+}
+
+.about-job,
+.about-item p {
+  color: #6a6a6a;
+  font-size: 14px;
+}
+.about-item p {
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.about-item p {
+  line-height: 28px;
+}
+.about-item img {
+  margin-bottom: 3rem;
+}
+
+.about-btn {
+  font-weight: 600;
+  color: #2f2f2f;
+  text-decoration: underline;
+}
+.about-btn:hover {
+  text-decoration: none;
+}

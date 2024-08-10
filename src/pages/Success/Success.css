@@ -1,0 +1,26 @@
+.success {
+  padding: 10rem 0 15rem 0;
+  background-color: #eff2f1;
+}
+
+.success-title h2 {
+  font-size: 5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: black;
+}
+.success-title {
+  text-align: center;
+}
+.success-title p {
+  color: #262626;
+  font-size: 1.25rem;
+}
+.fa-solid.fa-check {
+  border-radius: 50%;
+}
+
+.success-title .coupon-btn {
+  margin-top: 30px;
+}

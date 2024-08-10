@@ -1,0 +1,15 @@
+.explore {
+  color: #ffffff;
+  background: #2e2e2e;
+  border-color: #2e2e2e;
+  padding: 13px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all, 0.3s;
+}
+
+.explore:hover {
+  background: #222222;
+  border-color: #222222;
+}

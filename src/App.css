@@ -1,0 +1,41 @@
+.container {
+  width: 87%;
+  margin: 0 auto;
+}
+/* 
+.App {
+  width: 87%;
+  margin: 0 auto;
+} */
+@media screen and (max-width: 800px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@keyframes changeWith {
+  0% {
+    border-width: 10%;
+  }
+  100% {
+    border-width: 100%;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes moveText {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
