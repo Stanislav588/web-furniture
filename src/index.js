@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter, useLocation } from "react-router-dom";
-import StoreContextProvider from "./context/StoreContext";
-import ScrollToTop from "./scroll/ScrollToTop";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import { BrowserRouter } from "react-router-dom";
 
+import ScrollToTop from "./scroll/ScrollToTop";
+import { Provider } from "react-redux";
+import { SnackbarProvider } from "notistack";
+import { cartStore } from "./redux/configureCart";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <StoreContextProvider>
-      <ScrollToTop />
-      <App />
-    </StoreContextProvider>
-  </BrowserRouter>
+  <SnackbarProvider anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+    <BrowserRouter>
+      <Provider store={cartStore}>
+        <ScrollToTop />
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </SnackbarProvider>
 );

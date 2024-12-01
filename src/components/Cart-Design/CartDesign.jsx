@@ -1,64 +1,85 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import "./CartDesign.css";
 
-import { StoreContext } from "../../context/StoreContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decreaseValue,
+  increaseValue,
+  removeFromCart,
+} from "../../redux/store";
+import useTotalPrice from "../../hooks/useTotalPrice";
+import { useSnackbar } from "notistack";
 
 const CartDesign = () => {
-  const [value, setValue] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    cartItems,
-    food_list,
-    removeAllFromCart,
-    addToCart,
-    removeFromCart,
-    getTotalCartAmount,
-  } = useContext(StoreContext);
+  const cartStore = useSelector((state) => state.cart.cartItems);
+  const { totalAmount } = useTotalPrice();
+  function handleRemoveFromCart(product) {
+    dispatch(removeFromCart(product));
+    const currentStorage = JSON.parse(localStorage.getItem("cart-items")) || [];
+    const updatedCart = currentStorage.filter((item) => item.id !== product);
+    localStorage.setItem("cart-items", JSON.stringify(updatedCart));
+    enqueueSnackbar("Deleted from cart successfully", { variant: "success" });
+  }
+
   return (
     <div className="cart-design">
       <div className="container">
         <div className="cart-wrapper">
-          <div className="cart-items-title">
-            <h3 className="cart-title">Image</h3>
-            <h3 className="cart-title">Product</h3>
-            <h3 className="cart-title">Price</h3>
-            <h3 className="cart-title">Quantity</h3>
-            <h3 className="cart-title">Total</h3>
-            <h3 className="cart-title">Remove</h3>
-          </div>
-          <hr className="hr" />
+          {cartStore.length === 0 ? (
+            <h1 className="show-message !">Your cart is empty 🧐</h1>
+          ) : (
+            <>
+              <div className="cart-items-title">
+                <h3 className="cart-title">Image</h3>
+                <h3 className="cart-title">Product</h3>
+                <h3 className="cart-title">Price</h3>
+                <h3 className="cart-title">Quantity</h3>
+                <h3 className="cart-title">Remove</h3>
+              </div>{" "}
+              <hr className="hr" />
+            </>
+          )}
+
           <div className="cart-list">
-            {food_list.map(({ id, img, nameProduct, price }) => {
-              if (cartItems[id] > 0) {
-                return (
-                  <>
-                    <div key={id} className="cart-item">
-                      <img src={img} alt={nameProduct} />
-                      <div>
-                        <h5>{nameProduct}</h5>
-                      </div>
-                      <span>${price}</span>
-                      <div className="total">
-                        <button onClick={() => removeFromCart(id)}>-</button>
-                        <input
-                          className="total-input"
-                          type="text"
-                          value={cartItems[id]}
-                          onChange={(event) => setValue(event.target.value)}
-                        />
-                        <button onClick={() => addToCart(id)}>+</button>
-                      </div>
-                      <span>${price * cartItems[id]}</span>
-                      <i
-                        onClick={() => removeAllFromCart(id)}
-                        className="fa-solid fa-xmark"
-                      ></i>
+            {cartStore.map((product, index) => {
+              return (
+                <>
+                  <div key={index} className="cart-item">
+                    <img src={product.img} alt={product.productName} />
+                    <div>
+                      <h5>{product.productName}</h5>
                     </div>
-                    <hr />
-                  </>
-                );
-              }
+                    <span>$ {product.price}</span>
+                    <div className="total">
+                      <button
+                        onClick={() =>
+                          dispatch(decreaseValue({ id: product.id }))
+                        }
+                      >
+                        -
+                      </button>
+                      <p className="quantity">{product.quantity}</p>
+
+                      <button
+                        onClick={() =>
+                          dispatch(increaseValue({ id: product.id }))
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <button onClick={() => handleRemoveFromCart(product.id)}>
+                      <i className="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  <hr />
+                </>
+              );
             })}
           </div>
         </div>
@@ -92,16 +113,11 @@ const CartDesign = () => {
             </div>
             <div className="sub-total">
               <span>Subtotal</span>
-              <strong>${getTotalCartAmount()}</strong>
+              <strong>$ {totalAmount}</strong>
             </div>
             <div className="total-value">
               <span>Total</span>
-              <strong>
-                $
-                {getTotalCartAmount() === 0
-                  ? getTotalCartAmount()
-                  : getTotalCartAmount() + 2}
-              </strong>
+              <strong>$ {totalAmount === 0 ? 0 : totalAmount + 10}</strong>
             </div>
 
             <button onClick={() => navigate("/order")} className="checkout-btn">

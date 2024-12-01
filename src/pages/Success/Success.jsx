@@ -13,9 +13,15 @@ function Success() {
             <i className="fa-solid fa-check"></i>
             <h2>Thank you!</h2>
             <p>You order was successfuly completed.</p>
-            <Link to="/shop">
-              <button className="coupon-btn">Back to shop</button>
-            </Link>
+
+            <div className="btn-end-box">
+              <Link to="/shop">
+                <button className="coupon-btn">Back to shop</button>
+              </Link>
+              <Link to="/cart">
+                <button className="show-order-btn">Show your order</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

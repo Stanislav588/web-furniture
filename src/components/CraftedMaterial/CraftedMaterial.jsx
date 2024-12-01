@@ -22,7 +22,7 @@ function CraftedMaterial() {
           </div>
           <ul className="card-list">
             {food_list.map((item) => (
-              <Card {...item} key={item.id} />
+              <Card {...item} item={item} key={item.id} />
             ))}
           </ul>
         </div>

@@ -67,21 +67,24 @@ export const assets = {
 export const food_list = [
   {
     img: product1,
-    nameProduct: "Nordic Chair",
-    id: "1",
+    productName: "Nordic Chair",
+    id: 1,
     price: 78,
+    quantity: 1,
   },
   {
     img: product2,
-    nameProduct: "Kruzo Aero Chair",
-    id: "2",
+    productName: "Kruzo Aero Chair",
+    id: 2,
     price: 43,
+    quantity: 1,
   },
   {
     img: product3,
-    nameProduct: "Ergonomic Chair",
-    id: "3",
+    productName: "Ergonomic Chair",
+    id: 3,
     price: 50,
+    quantity: 1,
   },
 ];
 
@@ -178,5 +181,23 @@ export const headerName = [
   },
   {
     name: "Contact us",
+  },
+];
+
+export const accordionItems = [
+  {
+    name: "Direct bank transfer",
+    description:
+      "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account.",
+  },
+  {
+    name: "Cheque Payment",
+    description:
+      "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account.",
+  },
+  {
+    name: "Paypal",
+    description:
+      "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.",
   },
 ];

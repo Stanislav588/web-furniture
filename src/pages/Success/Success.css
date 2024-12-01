@@ -21,6 +21,20 @@
   border-radius: 50%;
 }
 
-.success-title .coupon-btn {
+.btn-end-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 30px;
+  column-gap: 20px;
+}
+
+.show-order-btn {
+  background-color: #212529;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease;
 }

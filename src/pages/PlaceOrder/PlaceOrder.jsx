@@ -1,30 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./PlaceOrder.css";
 
-import { StoreContext } from "../../context/StoreContext";
-import { Link, useFormAction } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { accordionItems } from "../../assets/assets";
+import useTotalPrice from "../../hooks/useTotalPrice";
+import { useSelector } from "react-redux";
 
 function PlaceOrder() {
+  const cartStore = useSelector((state) => state.cart.cartItems);
   const [paragraph, setParagraph] = useState(false);
-  const [paragraph1, setParagraph1] = useState(false);
-  const [paragraph2, setParagraph2] = useState(false);
+  const { totalAmount } = useTotalPrice();
+  function handleOpenAccordion(index) {
+    setParagraph((prevIndex) => (prevIndex === index ? null : index));
+  }
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       email: "",
     },
   });
-  const toggleOpen = () => {
-    setParagraph(!paragraph);
-  };
-  const toggleOpen1 = () => {
-    setParagraph1(!paragraph1);
-  };
-  const toggleOpen2 = () => {
-    setParagraph2(!paragraph2);
-  };
 
-  const { getTotalCartAmount, cartItems, food_list } = useContext(StoreContext);
   return (
     <>
       <div className="order">
@@ -141,27 +137,25 @@ function PlaceOrder() {
                     </thead>
 
                     <tbody>
-                      {food_list.map(({ id, price, nameProduct }) => {
-                        if (cartItems[id] > 0) {
-                          return (
-                            <>
-                              <tr key={id}>
-                                <td>
-                                  {nameProduct}
-                                  <strong> x</strong> {cartItems[id]}
-                                </td>
-                                <td>${price}</td>
-                              </tr>
-                            </>
-                          );
-                        }
+                      {cartStore.map((item) => {
+                        return (
+                          <>
+                            <tr key={item.id}>
+                              <td>
+                                {item.productName}
+                                <strong> {item.quantity} x</strong>
+                              </td>
+                              <td>${item.price}</td>
+                            </tr>
+                          </>
+                        );
                       })}
 
                       <tr>
                         <td>
                           <strong>Card subtotal</strong>
                         </td>
-                        <td>${getTotalCartAmount()}</td>
+                        <td>$ {totalAmount}</td>
                       </tr>
 
                       <tr>
@@ -170,61 +164,34 @@ function PlaceOrder() {
                         </td>
                         <td>
                           <strong>
-                            $
-                            {getTotalCartAmount() === 0
-                              ? getTotalCartAmount()
-                              : getTotalCartAmount() + 2}
+                            $ {totalAmount === 0 ? 0 : totalAmount + 10}
                           </strong>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                  {accordionItems.map((item, index) => {
+                    return (
+                      <>
+                        <div
+                          onClick={() => handleOpenAccordion(index)}
+                          className="coupon-border"
+                        >
+                          <h3 onClick={() => setParagraph(!paragraph)}>
+                            {item.name}
+                          </h3>
+                          <div className="border-show">
+                            {paragraph === index && (
+                              <p className="border-paragraph">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
 
-                  <div className="coupon-border">
-                    <h3 onClick={() => toggleOpen()}>Direct bank transfer</h3>
-                    <div className="border-show">
-                      {paragraph ? (
-                        <p className="border-paragraph">
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.
-                          Your order won’t be shipped until the funds have
-                          cleared in our account.
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
-                  <div className="coupon-border">
-                    <h3 onClick={() => toggleOpen1()}>Cheque Payment</h3>
-                    <div className="border-show">
-                      {paragraph1 ? (
-                        <p className="border-paragraph">
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.
-                          Your order won’t be shipped until the funds have
-                          cleared in our account.
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
-                  <div className="coupon-border">
-                    <h3 onClick={() => toggleOpen2()}>Paypal </h3>
-                    <div className="border-show">
-                      {paragraph2 ? (
-                        <p className="border-paragraph-2">
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.
-                          Your order won’t be shipped until the funds have
-                          cleared in our account.
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
                   <Link to="/success">
                     <button className="coupon-btn">Place order</button>
                   </Link>

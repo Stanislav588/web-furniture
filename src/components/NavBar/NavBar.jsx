@@ -1,13 +1,11 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import "./NavBar.css";
 import { CSSTransition } from "react-transition-group";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
-import { StoreContext } from "../../context/StoreContext";
 
 function NavBar({ login, setLogin }) {
-  const { getTotalCartAmount } = useContext(StoreContext);
   const [openMenu, setOpenMenu] = useState(false);
   const [home, setHome] = useState("home");
 
@@ -45,9 +43,7 @@ function NavBar({ login, setLogin }) {
             <Link onClick={() => setOpenMenu(false)} to="/about">
               About us
             </Link>
-            <Link onClick={() => setOpenMenu(false)} to="/shop">
-              Shop
-            </Link>
+
             <Link onClick={() => setOpenMenu(false)} to="/services">
               Services
             </Link>
@@ -77,15 +73,7 @@ function NavBar({ login, setLogin }) {
                 Home
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link
-                onClick={() => setHome("shop")}
-                className={home === "shop" ? "style" : ""}
-                to="/shop"
-              >
-                Shop
-              </Link>
-            </li>
+
             <li className="navbar-item">
               <Link
                 onClick={() => setHome("about")}
@@ -136,8 +124,6 @@ function NavBar({ login, setLogin }) {
               <Link to="/cart">
                 <img className="cart-icon" src={assets.cart} alt="cart" />
               </Link>
-
-              <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
             </div>
           </div>
 

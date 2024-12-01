@@ -58,9 +58,6 @@
   animation-name: changeWith;
 }
 
-.navbar-cart-icon {
-  position: relative;
-}
 .dot {
   content: "";
   position: absolute;
@@ -142,7 +139,9 @@
   opacity: 0;
 }
 /* =============== */
-
+.fa-bars {
+  margin-left: 20px;
+}
 .style {
   border-bottom: 5px solid #f8b810;
   color: #fff;
@@ -164,18 +163,10 @@
   .navbar-list li {
     display: none;
   }
-  .user-icons {
-    margin-left: 40%;
-  }
 }
 
 @media (min-width: 1000px) {
   .fa-solid.fa-bars {
     display: none;
-  }
-}
-@media (max-width: 770px) {
-  .user-icons {
-    margin-left: 10%;
   }
 }

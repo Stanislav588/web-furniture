@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 const Login = ({ login, setLogin }) => {
   const [currState, setCurrState] = useState("Sign In");
   const {
